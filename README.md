@@ -10,14 +10,14 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 ## Getting Started
 
 First, download the zip file or clone the repositary:
-Then,
+Then,to install the required node modules run
 
 ```bash
 npm install
 #or
 npm i
 ```
-to install the required node modules and then run
+and then run
 
 ```bash
 npm run dev
