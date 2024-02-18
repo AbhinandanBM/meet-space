@@ -1,8 +1,23 @@
+## Meeting Room Booking System
+
+# Overview:
+In today's fast-paced business environment, effective utilization of meeting spaces is crucial
+for productivity and collaboration. To streamline the process of booking meeting rooms and
+avoid conflicts, there is a need for a robust meeting room booking system.
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-First, run the development server:
+First, download the zip file or clone the repositary:
+Then,
+
+```bash
+npm install
+#or
+npm i
+```
+to install the required node modules and then run
 
 ```bash
 npm run dev
