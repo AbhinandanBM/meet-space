@@ -9,7 +9,10 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 ## Getting Started
 
-First, download the zip file or clone the repositary:
+First, download the zip file or clone this repositary 
+```git
+git clone https://github.com/AbhinandanBM/meet-space.git
+```
 Then,to install the required node modules run
 
 ```bash
