@@ -3,13 +3,16 @@ import HeroSection from "@/src/components/HeroSection/HeroSection";
 import NewsLetter from "@/src/components/NewsLetter/NewsLetter";
 import PageSearch from "@/src/components/PageSearch/PageSearch";
 import FeaturedRoom from "@/src/components/FeaturedRoom/FeaturedRoom";
+import { getFeaturedRoom } from "@/src/libs/apis";
 
-const Home = () => {
+const Home = async () => {
+  const featuredRoom = await getFeaturedRoom();
+
   return (
     <>
       <HeroSection />
       <PageSearch />
-      <FeaturedRoom />
+      <FeaturedRoom featuredRoom={featuredRoom} />
       <Gallery />
       <NewsLetter />
     </>

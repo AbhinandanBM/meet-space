@@ -26,19 +26,10 @@ const booking = {
         validation: Rule => Rule.required(),
       }),
       defineField({
-        name: 'checkinTime',
-        title: 'Check-in Time',
-        type: 'datetime', 
+        name: 'checkoutDate',
+        title: 'Check-out Date',
+        type: 'date',
         validation: Rule => Rule.required(),
-      }),
-      defineField({
-        name: 'duration',
-        title: 'Duration',
-        type: 'number', 
-        validation: (Rule) => [
-          Rule.required().min(1).error("Minimum duration should be one hour"),
-          Rule.positive(), // Ensure duration is positive
-        ],
       }),
     defineField({
       name: 'capacity',
