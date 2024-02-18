@@ -6,13 +6,13 @@ import { LiaFireExtinguisherSolid } from "react-icons/lia";
 import { AiOutlineMedicineBox } from "react-icons/ai";
 import { GiSmokeBomb } from "react-icons/gi";
 import { useState } from "react";
-// import axios from 'axios';
+import axios from "axios";
 
 import { getRoom } from "@/src/libs/apis";
 import LoadingSpinner from "../../loading";
 import BookRoomCta from "@/src/components/BookRoomCta/BookRoomCta";
 import toast from "react-hot-toast";
-// import { getStripe } from '@/src/libs/stripe';
+import { getStripe } from "@/src/libs/stripe";
 // import RoomReview from '@/components/RoomReview/RoomReview';
 import RoomPhotoGallery from "@/src/components/RoomPhotoGallery/RoomPhotoGallery";
 
@@ -55,31 +55,29 @@ const RoomDetails = (props: { params: { slug: string } }) => {
 
     const hotelRoomSlug = room.slug.current;
 
-    // const stripe = await getStripe();
+    const stripe = await getStripe();
 
-    // try {
-    //   const { data: stripeSession } = await axios.post('/api/stripe', {
-    //     checkinDate,
-    //     checkoutDate,
-    //     adults,
-    //     children: noOfChildren,
-    //     numberOfDays,
-    //     hotelRoomSlug,
-    //   });
+    try {
+      const { data: stripeSession } = await axios.post("/api/stripe", {
+        checkinDate,
+        checkoutDate,
+        numberOfDays,
+        hotelRoomSlug,
+      });
 
-    //   if (stripe) {
-    //     const result = await stripe.redirectToCheckout({
-    //       sessionId: stripeSession.id,
-    //     });
+      if (stripe) {
+        const result = await stripe.redirectToCheckout({
+          sessionId: stripeSession.id,
+        });
 
-    //     if (result.error) {
-    //       toast.error('Payment Failed');
-    //     }
-    //   }
-    // } catch (error) {
-    //   console.log('Error: ', error);
-    //   toast.error('An error occured');
-    // }
+        if (result.error) {
+          toast.error("Payment Failed");
+        }
+      }
+    } catch (error) {
+      console.log("Error: ", error);
+      toast.error("An error occured");
+    }
   };
 
   const calcNumDays = () => {

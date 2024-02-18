@@ -1,4 +1,5 @@
-import { Room } from "../models/room";
+import axios from "axios";
+import { CreateBookingDto, Room } from "../models/room";
 import sanityClient from "./sanity";
 import * as queries from './sanityQueries';
 
@@ -29,3 +30,39 @@ export async function getFeaturedRoom() {
   
     return result;
   }  
+
+  export const createBooking = async ({
+    checkinDate,
+    checkoutDate,
+    capacity,
+    discount,
+    meetingRoom,
+    totalPrice,
+    user,
+  }: CreateBookingDto) => {
+    const mutation = {
+      mutations: [
+        {
+          create: {
+            _type: 'booking',
+            user: { _type: 'reference', _ref: user },
+            meetingRoomRoom: { _type: 'reference', _ref: meetingRoom },
+            checkinDate,
+            checkoutDate,
+            capacity,
+            totalPrice,
+            discount,
+          },
+        },
+      ],
+    };
+  
+    const { data } = await axios.post(
+      `https://${process.env.NEXT_PUBLIC_SANITY_PROJECT_ID}.api.sanity.io/v2021-10-21/data/mutate/${process.env.NEXT_PUBLIC_SANITY_DATASET}`,
+      mutation,
+      { headers: { Authorization: `Bearer ${process.env.SANITY_STUDIO_TOKEN}` } }
+    );
+  
+    return data;
+  };
+  
